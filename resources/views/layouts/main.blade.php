@@ -21,9 +21,7 @@
 
 <x-navbar/>
 
-<h1 class="text-3xl font-bold underline">
-    Hello world!
-</h1>
+{{$slot}}
 
 <x-footer/>
 <a href="#" onclick="topFunction()" id="back-to-top"
