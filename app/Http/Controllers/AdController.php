@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ad;
+use App\Models\AdImage;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
 {
@@ -30,8 +33,16 @@ class AdController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): void
     {
+        $request->validate([
+            'title'       => 'required|min:5',
+            'description' => 'required',
+            'image'       => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'title' => ['required' => 'Iltimos, sarlavhani kiriting!'],
+        ]);
+
         $ad = Ad::query()->create([
             'title'       => $request->get('title'),
             'description' => $request->get('description'),
@@ -43,7 +54,13 @@ class AdController extends Controller
             'rooms'       => $request->get('rooms'),
         ]);
 
-        dd($ad);
+        $file = Storage::disk('public')->put('/', $request->image);
+
+        AdImage::query()->create([
+            'ad_id' => $ad->id,
+            'name'  => $file,
+        ]);
+
     }
 
     /**

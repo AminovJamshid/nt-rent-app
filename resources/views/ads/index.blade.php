@@ -86,7 +86,7 @@
                     <div
                         class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
-                            <img src="#" alt="">
+                            <img src="{{'/storage/'.$ad->images->first()?->name}}" alt="">
 
                             <div class="absolute top-4 end-4">
                                 <a href="/ads/like/{{ $ad->id }}"

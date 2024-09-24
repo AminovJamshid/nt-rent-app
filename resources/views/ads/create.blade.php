@@ -1,7 +1,15 @@
 <x-main-layout>
     <div class="page-wrapper toggled">
 
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <!-- Start Page Content -->
         <main class="page-content bg-gray-50 dark:bg-slate-800">
 
