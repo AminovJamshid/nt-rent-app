@@ -44,6 +44,9 @@
                 <li>
                     <a href="/">E'lonlar</a>
                 </li>
+                <li>
+                    <a href="/" target="_blank">E'lonlar</a>
+                </li>
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->
