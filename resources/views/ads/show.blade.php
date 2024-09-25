@@ -6,7 +6,7 @@
                     <div class="grid grid-cols-1 relative">
                         <div class="tiny-one-item">
                             <div class="tiny-slide">
-                                <img src="#"
+                                <img src="{{'/storage/'.$ad->images->first()?->name}}"
                                      class="rounded-md shadow dark:shadow-gray-700" alt="">
                             </div>
                         </div>
@@ -19,18 +19,18 @@
 
                     <ul class="py-6 flex items-center list-none">
                         <li class="flex items-center lg:me-6 me-4">
-                            <i class="uil uil-compress-arrows lg:text-3xl text-2xl me-2 text-green-600"></i>
-                            <span class="lg:text-xl">8000sqf</span>
+                            <i data-feather="map" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <span class="lg:text-xl">{{$ad->branch->name}}</span>
                         </li>
 
                         <li class="flex items-center lg:me-6 me-4">
-                            <i class="uil uil-bed-double lg:text-3xl text-2xl me-2 text-green-600"></i>
-                            <span class="lg:text-xl">{{ $ad->rooms}} xona</span>
+                            <i data-feather="user" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <span class="lg:text-xl">{{ $ad->gender}}</span>
                         </li>
 
                         <li class="flex items-center">
-                            <i class="uil uil-bath lg:text-3xl text-2xl me-2 text-green-600"></i>
-                            <span class="lg:text-xl">4 Baths</span>
+                            <i data-feather="home" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                            <span class="lg:text-xl">{{$ad->rooms}}</span>
                         </li>
                     </ul>
 
@@ -47,36 +47,55 @@
                     <div class="sticky top-20">
                         <div class="rounded-md bg-slate-50 dark:bg-slate-800 shadow dark:shadow-gray-700">
                             <div class="p-6">
-                                <h5 class="text-2xl font-medium">Narxi:</h5>
+                                <h5 class="text-2xl font-medium">Qo'shimcha ma'lumotlar:</h5>
 
                                 <div class="flex justify-between items-center mt-4">
-                                    <span class="text-xl font-medium">$ {{ $ad->price}}</span>
+                                    <span class="text-xl font-medium flex">
+                                        <i data-feather="dollar-sign" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                                        {{ $ad->price}}</span>
 
-                                    <span
-                                        class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.75 rounded h-6">{{ $ad->status_id}}</span>
+                                    <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.75 rounded h-6">
+                                        {{ $ad->status->name}}
+                                    </span>
                                 </div>
 
                                 <ul class="list-none mt-4">
                                     <li class="flex justify-between items-center mt-2">
-                                        <span class="text-slate-400 text-sm">Filial:</span>
-                                        <span class="font-medium text-sm">{{ $ad->branch_id}}</span>
+                                        <span class="lg:text-xl flex">
+                                            <i data-feather="map" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                                            Filial:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->branch->name}}</span>
                                     </li>
-
                                     <li class="flex justify-between items-center mt-2">
-                                        <span class="text-slate-400 text-sm">Sana</span>
-                                        <span class="font-medium text-sm">{{ $ad->created_at}}</span>
+                                        <span class="lg:text-xl flex">
+                                            <i data-feather="user" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                                            Kimlarga:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->gender}}</span>
+                                    </li>
+                                    <li class="flex justify-between items-center mt-2">
+                                        <span class="lg:text-xl flex">
+                                            <i data-feather="home" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                                            Xonalar:
+                                        </span>
+                                        <span class="font-medium text-sm">{{ $ad->rooms}}</span>
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="flex">
                                 <div class="p-1 w-1/2">
-                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Book
-                                        Now</a>
+                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">
+                                        <i data-feather="bookmark" class="text-2xl me-2"></i>
+                                        Saqlash
+                                    </a>
                                 </div>
                                 <div class="p-1 w-1/2">
-                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Offer
-                                        Now</a>
+                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">
+                                        <i data-feather="phone" class="text-2xl me-2"></i>
+                                        Bog'lanish
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +106,7 @@
                                     <input type="hidden" name="_method" value="delete">
                                     <button type="submit"
                                             class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md">
-                                        <i class="uil uil-trash align-middle me-2"></i>O'chirish
+                                        <i data-feather="trash" class="align-middle me-2"></i>O'chirish
                                     </button>
                                 </form>
                             </div>
