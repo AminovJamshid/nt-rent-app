@@ -37,4 +37,9 @@ class Ad extends Model
     {
         return $this->hasMany(AdImage::class);
     }
+
+    public function owner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
