@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ad;
 use App\Models\AdImage;
+use App\Models\Branch;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
@@ -17,8 +18,15 @@ class AdController extends Controller
     public function index(
     ): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $ads = Ad::all();
-        return view('ads.index', ['ads' => $ads]);
+        $userId = auth()->id();
+        $branches = Branch::all();
+
+        $ads = Ad::query()->withCount([
+            'bookmarkedByUsers as bookmarked' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            }
+        ])->get();
+        return view('ads.index', ['ads' => $ads, 'branches' => $branches]);
     }
 
     /**
@@ -60,7 +68,6 @@ class AdController extends Controller
             'ad_id' => $ad->id,
             'name'  => $file,
         ]);
-
     }
 
     /**

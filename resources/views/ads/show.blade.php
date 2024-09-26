@@ -6,7 +6,7 @@
                     <div class="grid grid-cols-1 relative">
                         <div class="tiny-one-item">
                             <div class="tiny-slide">
-                                <img src="{{'/storage/'.$ad->images->first()?->name}}"
+                                <img src="{{(new \App\Actions\DisplayAdImage($ad))()}}"
                                      class="rounded-md shadow dark:shadow-gray-700" alt="">
                             </div>
                         </div>
@@ -51,7 +51,8 @@
 
                                 <div class="flex justify-between items-center mt-4">
                                     <span class="text-xl font-medium flex">
-                                        <i data-feather="dollar-sign" class="lg:text-3xl text-2xl me-2 text-green-600"></i>
+                                        <i data-feather="dollar-sign"
+                                           class="lg:text-3xl text-2xl me-2 text-green-600"></i>
                                         {{ $ad->price}}</span>
 
                                     <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.75 rounded h-6">
@@ -86,10 +87,14 @@
 
                             <div class="flex">
                                 <div class="p-1 w-1/2">
-                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">
-                                        <i data-feather="bookmark" class="text-2xl me-2"></i>
-                                        Saqlash
-                                    </a>
+                                    <form action="/ads/{{ $ad->id }}/bookmark" method="post">
+                                        @csrf
+                                        <button type="submit"
+                                                class="btn bg-green-600 hover:bg-green-700 text-red rounded-md w-full">
+                                            <i data-feather="bookmark" class="text-2xl me-2 text-red-600"></i>
+                                            Saqlash
+                                        </button>
+                                    </form>
                                 </div>
                                 <div class="p-1 w-1/2">
                                     <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">
@@ -106,7 +111,7 @@
                                     <input type="hidden" name="_method" value="delete">
                                     <button type="submit"
                                             class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md">
-                                        <i data-feather="trash" class="align-middle me-2"></i>O'chirish
+                                        <i data-feather="trash" class="align-middle me-2 text-red-600"></i>O'chirish
                                     </button>
                                 </form>
                             </div>

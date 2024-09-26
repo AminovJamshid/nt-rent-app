@@ -1,12 +1,14 @@
 <nav id="topnav" class="defaultscroll is-sticky">
     <div class="container relative">
         <!-- Start Logo container-->
-        <a class="logo" href="index.html">
+        <a class="logo" href="/">
                     <span class="inline-block dark:hidden">
-                        <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt="">
-                        <img src="assets/images/logo-light.png" class="l-light" height="24" alt="">
+                        <img src="{{Vite::asset('resources/images/logo-dark.png')}}" class="l-dark" height="24" alt="">
+                        <img src="{{Vite::asset('resources/images/logo-light.png')}}" class="l-light" height="24"
+                             alt="">
                     </span>
-            <img src="assets/images/logo-light.png" height="24" class="hidden dark:inline-block" alt="">
+            <img src="{{Vite::asset('resources/images/logo-light.png')}}" height="24" class="hidden dark:inline-block"
+                 alt="">
         </a>
         <!-- End Logo container-->
 
@@ -64,9 +66,6 @@
             <ul class="navigation-menu justify-end nav-light">
                 <li>
                     <a href="/">E'lonlar</a>
-                </li>
-                <li>
-                    <a href="/" target="_blank">E'lonlar</a>
                 </li>
             </ul><!--end navigation menu-->
         </div><!--end navigation-->

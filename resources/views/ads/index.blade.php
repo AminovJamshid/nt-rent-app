@@ -29,17 +29,15 @@
 
                                             <div>
                                                 <label for="buy-properties"
-                                                       class="form-label font-medium text-slate-900 dark:text-white">Select
-                                                    Categories:</label>
+                                                       class="form-label font-medium text-slate-900 dark:text-white">Filial</label>
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-estate icons"></i>
-                                                    <select class="form-select z-2" data-trigger name="choices-catagory"
+                                                    <select class="form-select z-2" data-trigger name="branch_id"
                                                             id="choices-catagory-buy"
                                                             aria-label="Default select example">
-                                                        <option>Houses</option>
-                                                        <option>Apartment</option>
-                                                        <option>Offices</option>
-                                                        <option>Townhome</option>
+                                                        @foreach($branches as $branch)
+                                                            <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -91,12 +89,12 @@
                     <div
                         class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
-                            <img src="{{'/storage/'.$ad->images->first()?->name}}" alt="">
+                            <img src="{{(new \App\Actions\DisplayAdImage())()}}" alt="">
                             <div class="absolute top-4 end-4">
                                 <form action="/ads/{{ $ad->id }}/bookmark" method="post">
                                     @csrf
                                     <button type="submit"
-                                            class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600">
+                                            class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full {{$ad->bookmarked ? 'text-red-600 dark:text-red-600' : 'text-slate-100 dark:text-slate-100'}} focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600">
                                         <i data-feather="bookmark" class="text-[20px]"></i></button>
                                 </form>
                             </div>
