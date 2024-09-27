@@ -7,6 +7,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\AdImage;
 
+use MoonShine\Fields\Date;
 use MoonShine\Fields\File;
 use MoonShine\Fields\Image;
 use MoonShine\Resources\ModelResource;
@@ -32,13 +33,15 @@ class AdImageResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                Image::make('name')
+                Image::make('name'),
+                Date::make('created_at'),
+                Date::make('updated_at'),
             ]),
         ];
     }
 
     /**
-     * @param AdImage $item
+     * @param  AdImage  $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

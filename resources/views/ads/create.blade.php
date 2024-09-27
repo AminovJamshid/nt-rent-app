@@ -13,6 +13,11 @@
             <!-- Start Page Content -->
         <main class="page-content bg-gray-50 dark:bg-slate-800">
 
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
             <div class="container-fluid relative px-3">
                 <div class="layout-specing">
                     <!-- Start Content -->

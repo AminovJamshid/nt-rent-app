@@ -48,7 +48,7 @@ class AdResource extends ModelResource
                 BelongsTo::make(label: 'Filial', relationName: 'branch', resource: new BranchResource())->sortable(),
                 BelongsTo::make(label: 'Muallif', relationName: 'owner', resource: new UserResource()),
                 BelongsTo::make(label: 'Holati', relationName: 'status', resource: new StatusResource())->sortable(),
-                HasMany::make('Rasmlar', 'images', resource: new AdImageResource())->onlyLink(),
+                HasMany::make(label: 'Rasmlar', relationName: 'images', resource: new AdImageResource())->onlyLink(),
             ]),
         ];
     }

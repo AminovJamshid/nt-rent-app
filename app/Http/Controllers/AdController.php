@@ -9,6 +9,7 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Storage;
+use phpDocumentor\Reflection\DocBlock\Tags\InvalidTag;
 
 class AdController extends Controller
 {
@@ -18,7 +19,7 @@ class AdController extends Controller
     public function index(
     ): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        $userId = auth()->id();
+        $userId   = auth()->id();
         $branches = Branch::all();
 
         $ads = Ad::query()->withCount([
@@ -41,7 +42,7 @@ class AdController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): void
+    public function store(Request $request)
     {
         $request->validate([
             'title'       => 'required|min:5',
@@ -62,12 +63,16 @@ class AdController extends Controller
             'rooms'       => $request->get('rooms'),
         ]);
 
-        $file = Storage::disk('public')->put('/', $request->image);
+        if ($request->hasFile('image')) {
+            $file = Storage::disk('public')->put('/', $request->image);
 
-        AdImage::query()->create([
-            'ad_id' => $ad->id,
-            'name'  => $file,
-        ]);
+            AdImage::query()->create([
+                'ad_id' => $ad->id,
+                'name'  => $file,
+            ]);
+        }
+
+        return redirect(route('home'))->with('message', "E'lon yaratildi");
     }
 
     /**

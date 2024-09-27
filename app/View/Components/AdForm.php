@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Ad;
 use App\Models\Branch;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -10,14 +11,15 @@ use Illuminate\View\Component;
 
 class AdForm extends Component
 {
-    public                  $action = '/ads';
-    public                  $ad;
     public array|Collection $branches = [];
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public string  $action = '/ads',
+        public Ad|null $ad = null,
+    ) {
         $this->branches = Branch::all();
     }
 

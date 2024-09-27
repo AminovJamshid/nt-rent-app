@@ -89,7 +89,7 @@
                     <div
                         class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
-                            <img src="{{(new \App\Actions\DisplayAdImage())()}}" alt="">
+                            <img src="{{(new \App\Actions\DisplayAdImage())($ad)}}" alt="">
                             <div class="absolute top-4 end-4">
                                 <form action="/ads/{{ $ad->id }}/bookmark" method="post">
                                     @csrf
