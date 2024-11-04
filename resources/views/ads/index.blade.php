@@ -33,10 +33,12 @@
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-estate icons"></i>
                                                     <select class="form-select z-2" data-trigger name="branch_id"
-                                                            id="choices-catagory-buy"
+                                                            id="branches"
                                                             aria-label="Default select example">
                                                         @foreach($branches as $branch)
-                                                            <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                                            <option value="{{$branch->id}}">
+                                                                {{$branch->name}} ({{$branch->id}})
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -83,11 +85,12 @@
             </div><!--end grid-->
         </div><!--end container-->
         <div class="container relative">
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]"
+            id="ads-grid">
 
                 @foreach ($ads as $ad)
                     <div
-                        class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
+                        class="ad group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                         <div class="relative">
                             <img src="{{(new \App\Actions\DisplayAdImage())($ad)}}" alt="">
                             <div class="absolute top-4 end-4">
@@ -103,7 +106,7 @@
                         <div class="p-6">
                             <div class="pb-6">
                                 <a href="/ads/{{ $ad->id }}"
-                                   class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{$ad->title}}</a>
+                                   class="ad_title text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{$ad->title}}</a>
                             </div>
 
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">

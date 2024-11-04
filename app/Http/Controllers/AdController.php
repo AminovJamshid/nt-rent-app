@@ -107,4 +107,11 @@ class AdController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $branchId = $request->get('branch_id');
+        $result = Ad::query()->where('branch_id', $branchId)->get();
+        return response()->json($result ?? []);
+    }
 }
